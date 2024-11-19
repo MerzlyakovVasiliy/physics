@@ -47,8 +47,6 @@ export const SwipeableWrapper = memo(({currentElement, current, onPageChange, to
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             display="flex"
-            justifyContent="center"
-            alignItems="center"
             sx={{
                 width: '100%',
                 height: '100%'
