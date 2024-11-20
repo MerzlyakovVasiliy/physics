@@ -1,7 +1,5 @@
-import {Box, Button} from "@mui/material";
+import {Box} from "@mui/material";
 import {memo, useRef} from "react";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 type TProps = {
     currentElement: React.ReactNode; // Текущий элемент, который нужно отобразить
@@ -13,14 +11,6 @@ type TProps = {
 export const SwipeableWrapper = memo(({currentElement, current, onPageChange, total}: TProps) => {
     const touchStartX = useRef<number | null>(null); // Начальная точка касания
     const touchEndX = useRef<number | null>(null); // Конечная точка касания
-
-    const handlePrev = () => {
-        if (current > 0) onPageChange(current - 1);
-    };
-
-    const handleNext = () => {
-        if (current < total - 1) onPageChange(current + 1);
-    };
 
     const handleTouchStart = (event: React.TouchEvent) => {
         touchStartX.current = event.touches[0].clientX;
@@ -59,37 +49,10 @@ export const SwipeableWrapper = memo(({currentElement, current, onPageChange, to
             display="flex"
             sx={{
                 width: '100%',
-                height: '100%',
-                position: 'relative'
+                height: '100%'
             }}
         >
-            <Button
-                onClick={handlePrev}
-                disabled={current === 0}
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    padding: 0
-                }}
-            >
-                <ArrowBackIosIcon />
-            </Button>
             {currentElement} {/* Отображаем текущий элемент */}
-            <Button
-                onClick={handleNext}
-                disabled={current === total - 1}
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 0,
-                    right: 0,
-                    padding: 0
-                }}
-            >
-                <ArrowForwardIosIcon />
-            </Button>
         </Box>
     );
 });

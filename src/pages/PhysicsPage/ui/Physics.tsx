@@ -1,9 +1,9 @@
 import Page from '@/widgets/Page/Page';
 import {formulas} from "../model/const.ts";
 import {useCallback, useMemo, useState} from "react";
-import {Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography} from "@mui/material";
+import {Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import {FormulaCard} from "@/entities/FormulaCard";
-// import {Pagination} from "@/entities/PaginationForFormul";
+import {Pagination} from "@/entities/PaginationForFormul";
 import {TFormula} from "@/entities/FormulaCard/model/types/formula.ts";
 import {SwipeableWrapper} from "@/widgets/SwipeableWrapper/SwipeableWrapper.tsx";
 
@@ -59,17 +59,14 @@ const Physics = () => {
                 onPageChange={handlePageChange}
                 total={currentFormulas.length} // Передаем длину массива
             />
-            <Typography variant="body2" color="textSecondary" textAlign="center">
-                {currentPage + 1} из {currentFormulas.length}
-            </Typography>
 
-            {/*{currentFormulas.length > 1 && (*/}
-            {/*    <Pagination*/}
-            {/*        total={currentFormulas.length}*/}
-            {/*        current={currentPage}*/}
-            {/*        onPageChange={handlePageChange}*/}
-            {/*    />*/}
-            {/*)}*/}
+            {currentFormulas.length > 1 && (
+                <Pagination
+                    total={currentFormulas.length}
+                    current={currentPage}
+                    onPageChange={handlePageChange}
+                />
+            )}
         </Page>
     );
 };
